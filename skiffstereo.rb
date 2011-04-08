@@ -34,7 +34,7 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
   if txt.include?('!play') || txt.include?('!stop') || txt.include?('!start') || txt.include?('!pause')
     play_pause
   elsif txt.include?('!quiet')
-    vol(3)
+    vol(4)
   elsif txt.include?('!loud')
     vol(7)
   elsif txt.include?('!skip') || txt.include?('!next')
