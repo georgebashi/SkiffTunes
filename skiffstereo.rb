@@ -37,6 +37,9 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
     vol(4)
   elsif txt.include?('!loud')
     vol(7)
+  elsif v = txt.match(/!vol ([0-9]{1,2})/)
+    v = [10.0, v[1].to_i].min
+    vol((v / 10.0) * 7.0)
   elsif txt.include?('!skip') || txt.include?('!next')
     skip
   else
