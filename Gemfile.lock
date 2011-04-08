@@ -1,9 +1,15 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    crack (0.1.8)
     daemons (1.1.2)
     eventmachine (0.12.10)
+    httparty (0.7.4)
+      crack (= 0.1.8)
     json (1.5.1)
+    meta-spotify (0.1.5)
+      crack (>= 0.1.4)
+      httparty (>= 0.4.5)
     roauth (0.0.3)
     tweetstream (1.0.4)
       daemons
@@ -17,4 +23,5 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  meta-spotify
   tweetstream
