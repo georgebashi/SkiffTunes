@@ -28,7 +28,7 @@ def vol(i)
 end
 
 TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |status|
-  txt = status.text.gsub /[@]{0,1}#{TWITTER_USER}/, ''
+  txt = status.text.gsub /[@]{0,1}#{TWITTER_USER}/i, ''
   puts txt
 
   if txt.include?('!play') || txt.include?('!stop') || txt.include?('!start') || txt.include?('!pause')
