@@ -13,6 +13,10 @@ $my_pwd = Dir.pwd
 
 def play_track(uri)
   `open -a /Applications/Spotify.app #{uri}`
+  if uri.include? "playlist"
+    sleep 1
+    `osascript #{$my_pwd}/enter.applescript`
+  end
 end
 
 def play_pause
@@ -43,7 +47,7 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
   elsif txt.include?('!skip') || txt.include?('!next')
     skip
   else
-    uri = txt.match(/(http:\/\/open\.spotify\.com\/[a-z:]+\/[a-zA-Z0-9]+)/) || txt.match(/(spotify:[a-z]+:[a-zA-Z0-9]+)/)
+    uri = txt.match(/(http:\/\/open\.spotify\.com\/[a-zA-Z0-9_\/]+)/) || txt.match(/(spotify:[a-zA-Z0-9_:]+)/)
     if !uri.nil?
       play_track(uri)
       return
