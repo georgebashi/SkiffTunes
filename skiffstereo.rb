@@ -43,7 +43,7 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
   elsif txt.include?('!skip') || txt.include?('!next')
     skip
   else
-    uri = txt.match(/(http:\/\/open\.spotify\.com\/[a-z]+\/[a-zA-Z0-9]+)/) || txt.match(/(spotify:[a-z]+:[a-zA-Z0-9]+)/)
+    uri = txt.match(/(http:\/\/open\.spotify\.com\/[a-z:]+\/[a-zA-Z0-9]+)/) || txt.match(/(spotify:[a-z]+:[a-zA-Z0-9]+)/)
     if !uri.nil?
       play_track(uri)
       return
