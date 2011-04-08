@@ -19,6 +19,10 @@ def play_pause
   `osascript play.applescript`
 end
 
+def vol(i)
+  `osascript -e 'set volume #{i}'`
+end
+
 TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |status|
   txt = status.text.gsub /[@]{0,1}#{TWITTER_USER}/, ''
   puts txt
@@ -26,6 +30,14 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
   if txt.include?('!play') || txt.include?('!stop') || txt.include?('!start') || txt.include?('!pause')
     play_pause
     return
+  end
+
+  if txt.include?('!quiet')
+    vol(3)
+  end
+
+  if txt.include?('!loud')
+    vol(7)
   end
 
   uri = txt.match(/(http:\/\/open\.spotify\.com\/[a-z]+\/[a-zA-Z0-9]+)/) || txt.match(/(spotify:[a-z]+:[a-zA-Z0-9]+)/)
