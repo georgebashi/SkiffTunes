@@ -53,7 +53,7 @@ TweetStream::Daemon.new(TWITTER_USER, TWITTER_PASS).track(TWITTER_USER) do |stat
     search = MetaSpotify::Track.search(txt)[:tracks]
     # find top result that's available in the uk
     search.each do |track|
-      next if !track.album.available_territories.include?('gb') && !track.album.available_territories.include?('worldwide')
+      # should really validate that we can play the track here
       play_track(track.uri)
       return
     end
